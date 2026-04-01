@@ -527,6 +527,51 @@
             background: #00b894;
         }
 
+        /* Visitor Counter Section */
+        .visitor-counter {
+            padding: 40px 2rem;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e8faf0 100%);
+            border-top: 2px solid #00b894;
+        }
+
+        .counter-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .counter-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.1);
+            border-top: 4px solid #00b894;
+        }
+
+        .counter-label {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .counter-number {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #00b894;
+            margin-bottom: 0.5rem;
+            font-family: 'Courier New', monospace;
+        }
+
+        .counter-subtext {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
         /* Footer */
         footer {
             background: #222;
@@ -624,6 +669,14 @@
                 width: 100%;
                 text-align: center;
             }
+
+            .counter-number {
+                font-size: 2rem;
+            }
+
+            .counter-label {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -681,7 +734,7 @@
                             <strong>월 10만원 추가 혜택 받기 (선택사항)</strong>
                             <p>매달 걷기 포인트를 10만원 추가로 얻고자 하는 분들은 매달 초에 시작되는 걷기 챌린지에 참여하세요.</p>
                             <div class="guide-highlight">
-                                💡 참여 시 월 10만원 상당 제품 구매 필요 • 추가 수익 가능
+                                💡 참여 시 월 10만원 제품 구매 필요 • 추가 현금 수익 가능
                             </div>
                         </div>
                     </li>
@@ -716,11 +769,12 @@
                 <div class="video-item">
                     <h3 class="video-item-title">🎬 헬시클로버 소개 영상</h3>
                     <div class="video-wrapper">
-                        <iframe width="560" height="315" 
-                                src="https://www.youtube.com/embed/3QedgxBwI0I?si=TxG_M276hbNOrYE9" 
-                                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
-                                clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                        <iframe 
+                            src="https://youtu.be/3QedgxBwI0I?si=3vTzQPqTQkWVHDC4" 
+                            title="헬시클로버 소개 영상"
+                            allowfullscreen="" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            loading="lazy">
                         </iframe>
                     </div>
                     <p class="video-description">만보시 2,000원 혜택 지급. 월 60,000원 혜택 신개념 걷기앱 소개</p>
@@ -733,10 +787,12 @@
                         <span class="video-item-subtitle">(추천인: 1211635 권기준)</span>
                     </div>
                     <div class="video-wrapper">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/mWYttA7MrxA?si=i_7DTKXSdEmMZWyW" 
-                                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
-                                encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
-                                allowfullscreen>
+                        <iframe 
+                            src="https://youtu.be/mWYttA7MrxA?si=ZMofP7o9K1EfM_5Y" 
+                            title="헬시클로버 가입 방법"
+                            allowfullscreen="" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            loading="lazy">
                         </iframe>
                     </div>
                     <p class="video-description">쉬운 단계별 가입 방법을 영상으로 확인하세요. 5분 안에 가입 완료!</p>
@@ -815,7 +871,7 @@
                 </div>
                 <div class="benefit-box">
                     <div class="benefit-amount">무제한</div>
-                    <div class="benefit-desc">ADS 구독시 포인트 적립 기한 없음</div>
+                    <div class="benefit-desc">ADS 구동시 포인트 적립 기한 없음</div>
                 </div>
             </div>
         </div>
@@ -873,7 +929,7 @@
                     <div class="stat-label">앱스토어 평점</div>
                 </div>
                 <div>
-                    <div class="stat">45,000P</div>
+                    <div class="stat">60,000P</div>
                     <div class="stat-label">월 최대 혜택</div>
                 </div>
             </div>
@@ -897,6 +953,27 @@
         </div>
     </section>
 
+    <!-- Visitor Counter Section -->
+    <section class="visitor-counter">
+        <div class="counter-container">
+            <div class="counter-box">
+                <div class="counter-label">📊 총 방문자 수</div>
+                <div class="counter-number" id="totalVisitors">0</div>
+                <div class="counter-subtext">누적 방문자</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-label">👤 오늘 방문자 수</div>
+                <div class="counter-number" id="todayVisitors">0</div>
+                <div class="counter-subtext">일일 방문자</div>
+            </div>
+            <div class="counter-box">
+                <div class="counter-label">🌍 마지막 방문</div>
+                <div class="counter-number" id="lastVisitTime" style="font-size: 1.2rem;">-</div>
+                <div class="counter-subtext">마지막 방문 시간</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -912,5 +989,61 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // 방문자 카운터 로직
+        function initializeVisitorCounter() {
+            // 현재 날짜 가져오기
+            const today = new Date().toISOString().split('T')[0];
+            
+            // 로컬 스토리지에서 데이터 가져오기
+            let counterData = JSON.parse(localStorage.getItem('visitorCounter')) || {
+                total: 0,
+                todayDate: today,
+                todayCount: 0,
+                lastVisitTime: new Date()
+            };
+            
+            // 날짜가 변경되었는지 확인
+            if (counterData.todayDate !== today) {
+                // 새로운 날짜이면 일일 카운트 초기화
+                counterData.todayDate = today;
+                counterData.todayCount = 0;
+            }
+            
+            // 카운트 증가
+            counterData.total += 1;
+            counterData.todayCount += 1;
+            counterData.lastVisitTime = new Date();
+            
+            // 로컬 스토리지에 저장
+            localStorage.setItem('visitorCounter', JSON.stringify(counterData));
+            
+            // UI 업데이트
+            updateCounterDisplay(counterData);
+        }
+        
+        function updateCounterDisplay(data) {
+            // 총 방문자 수
+            document.getElementById('totalVisitors').textContent = 
+                data.total.toLocaleString();
+            
+            // 오늘 방문자 수
+            document.getElementById('todayVisitors').textContent = 
+                data.todayCount.toLocaleString();
+            
+            // 마지막 방문 시간
+            const lastVisit = new Date(data.lastVisitTime);
+            const hours = String(lastVisit.getHours()).padStart(2, '0');
+            const minutes = String(lastVisit.getMinutes()).padStart(2, '0');
+            const timeString = `${hours}:${minutes}`;
+            document.getElementById('lastVisitTime').textContent = timeString;
+        }
+        
+        // 페이지 로드 시 실행
+        window.addEventListener('load', function() {
+            initializeVisitorCounter();
+        });
+    </script>
 </body>
 </html>
