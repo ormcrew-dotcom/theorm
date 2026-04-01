@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>헬시클로버 - 걷기로 혜택받고 건강해지는 앱</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, #00b894 0%, #00a86b 100%);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Guide Section */
+        .guide {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 100%);
+            padding: 150px 2rem 60px;
+            margin-top: 60px;
+        }
+
+        .guide-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .guide-title {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .guide-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.15);
+            border-left: 6px solid #ff6b00;
+        }
+
+        .guide-list {
+            list-style: none;
+        }
+
+        .guide-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .guide-list li:last-child {
+            border-bottom: none;
+        }
+
+        .guide-step-number {
+            background: linear-gradient(135deg, #ff6b00 0%, #ff8533 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .guide-step-content {
+            flex: 1;
+        }
+
+        .guide-step-content strong {
+            display: block;
+            color: #ff6b00;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-step-content p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .guide-highlight {
+            background: #fff3e0;
+            color: #e65100;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .kakao-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .kakao-link {
+            display: inline-block;
+            background: #ffe812;
+            color: #191919;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .kakao-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 232, 18, 0.4);
+        }
+
+        .kakao-link-personal {
+            background: #ffe812;
+            border: 2px solid #ffc200;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 80px 2rem;
+            background: white;
+        }
+
+        .video-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-title {
+            font-size: 2.5rem;
+            color: #222;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .video-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .video-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-item-title {
+            font-size: 1.3rem;
+            color: #00b894;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .video-item-title-with-subtitle {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .video-item-subtitle {
+            font-size: 0.95rem;
+            color: #ff6b00;
+            font-weight: 600;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .video-description {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #00b894 0%, #00a86b 100%);
+            color: white;
+            padding: 80px 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #00b894;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin: 0 10px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 2rem;
+            background: #f8f9fa;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #222;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #00b894;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 2rem;
+            background: white;
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-box {
+            padding: 2rem;
+            background: linear-gradient(135deg, #f0fdf4 0%, #e8faf0 100%);
+            border-left: 5px solid #00b894;
+            border-radius: 10px;
+        }
+
+        .benefit-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00b894;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* How it Works Section */
+        .how-it-works {
+            padding: 80px 2rem;
+            background: #f8f9fa;
+        }
+
+        .how-it-works-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #00b894;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step h4 {
+            margin-bottom: 0.5rem;
+            color: #222;
+        }
+
+        .step p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #00b894 0%, #00a86b 100%);
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .stat {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Download Section */
+        .download {
+            padding: 80px 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .download-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .download h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .download p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .app-store-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .app-button {
+            display: inline-block;
+            background: #222;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .app-button:hover {
+            background: #00b894;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #00b894;
+        }
+
+        .footer-copy {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .video-title {
+                font-size: 1.8rem;
+            }
+
+            .videos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .video-item-title {
+                font-size: 1.1rem;
+            }
+
+            .video-item-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .app-store-buttons {
+                flex-direction: column;
+            }
+
+            .guide-title {
+                font-size: 1.8rem;
+            }
+
+            .guide-content {
+                padding: 1.5rem;
+            }
+
+            .guide-step-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .kakao-links {
+                flex-direction: column;
+            }
+
+            .kakao-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                🍀 헬시클로버
+            </div>
+            <ul class="nav-links">
+                <li><a href="#guide">이용가이드</a></li>
+                <li><a href="#video">영상</a></li>
+                <li><a href="#features">기능</a></li>
+                <li><a href="#benefits">혜택</a></li>
+                <li><a href="#download">다운로드</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Guide Section -->
+    <section class="guide" id="guide">
+        <div class="guide-container">
+            <h2 class="guide-title">🎯 헬시클로버 앱 이용 가이드</h2>
+            <div class="guide-content">
+                <ul class="guide-list">
+                    <li>
+                        <div class="guide-step-number">1</div>
+                        <div class="guide-step-content">
+                            <strong>헬시클로버 설치 및 무료 교원더오름 회원 가입</strong>
+                            <p>추천인: <span style="font-weight: 600; color: #ff6b00;">1211635 (권기준)</span></p>
+                            <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">앱을 다운로드하고 무료로 회원가입을 진행합니다. 추천인 코드를 입력하면 추가 혜택을 받을 수 있습니다.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guide-step-number">2</div>
+                        <div class="guide-step-content">
+                            <strong>열심히 걸으면서 헬시클로버 포인트 수령</strong>
+                            <p>매일 자정 전에 1번씩 클릭 필수</p>
+                            <div class="guide-highlight">
+                                ⚠️ 매일 자정 전에 포인트 수령 버튼을 클릭해야 포인트가 적립됩니다!
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guide-step-number">3</div>
+                        <div class="guide-step-content">
+                            <strong>헬시클로버 몰에서 제품 무료로 구매</strong>
+                            <p>수령한 포인트로 화장품, 영양제, 건강 식품 등 제품을 무료로 구매해서 사용하세요.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guide-step-number">4</div>
+                        <div class="guide-step-content">
+                            <strong>월 10만원 추가 혜택 받기 (선택사항)</strong>
+                            <p>매달 걷기 포인트를 10만원 추가로 얻고자 하는 분들은 매달 초에 시작되는 걷기 챌린지에 참여하세요.</p>
+                            <div class="guide-highlight">
+                                💡 참여 시 월 10만원 현금 투자 필요 • 추가 수익 가능
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="guide-step-number">5</div>
+                        <div class="guide-step-content">
+                            <strong>카톡 팀 채팅방에 입장하여 정보 획득</strong>
+                            <p>헬시클로버 걷기앱에 대한 최신 정보와 팁을 얻을 수 있는 커뮤니티에 참여하세요.</p>
+                            <div class="kakao-links">
+                                <a href="https://invite.kakao.com/tc/lTze9alE9e" class="kakao-link" target="_blank">
+                                    💬 카톡 팀 채팅방 입장하기
+                                </a>
+                                <a href="https://open.kakao.com/o/ssstMumi" class="kakao-link kakao-link-personal" target="_blank">
+                                    👤 카톡 개인 문의
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="video">
+        <div class="video-container">
+            <h2 class="video-title">📺 헬시클로버 설명 영상</h2>
+            <p class="video-subtitle">헬시클로버에 대해 더 자세히 알아보세요</p>
+            
+            <div class="videos-grid">
+                <!-- 소개 영상 -->
+                <div class="video-item">
+                    <h3 class="video-item-title">🎬 헬시클로버 소개 영상</h3>
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/q4lYdRH4pHQ?si=6GiGhcUPtOGKaux5" 
+                            title="헬시클로버 소개 영상"
+                            allowfullscreen="" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <p class="video-description">만보시 2,000원 혜택 지급. 월 60,000원 혜택 신개념 걷기앱 소개</p>
+                </div>
+
+                <!-- 가입 방법 영상 -->
+                <div class="video-item">
+                    <div class="video-item-title-with-subtitle">
+                        <span>📝 헬시클로버 가입 방법</span>
+                        <span class="video-item-subtitle">(추천인: 1211635 권기준)</span>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/q4lYdRH4pHQ?si=AgXJZH1gpZAy33NO" 
+                            title="헬시클로버 가입 방법"
+                            allowfullscreen="" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <p class="video-description">쉬운 단계별 가입 방법을 영상으로 확인하세요. 5분 안에 가입 완료!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>걸으면 돈이 된다!</h1>
+            <p class="subtitle">매일 걷기만 해도 포인트가 쌓이고, 건강해지는 스마트한 생활</p>
+            <div>
+                <a href="#download" class="cta-button">지금 시작하기</a>
+                <a href="#features" class="cta-button cta-secondary">더 알아보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="section-title">헬시클로버의 주요 기능</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👣</div>
+                    <h3>걸음 수 추적</h3>
+                    <p>스마트한 걸음 수 추적으로 당신의 일일 활동량을 정확하게 기록합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>포인트 적립</h3>
+                    <p>목표 달성 시 포인트가 자동으로 적립되어 건강한 습관을 보상합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛍️</div>
+                    <h3>전용 쇼핑몰</h3>
+                    <p>적립된 포인트로 교원더오름 전용몰에서 다양한 건강식품을 구매할 수 있습니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h3>건강 관리</h3>
+                    <p>일일 활동을 분석하여 건강한 생활 패턴을 형성하도록 도와줍니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>상세 통계</h3>
+                    <p>주간, 월간 활동 데이터를 확인하고 진행 상황을 시각화합니다.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>다양한 혜택</h3>
+                    <p>정기적인 이벤트와 캠페인을 통해 추가 보상을 받을 수 있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="benefits-container">
+            <h2 class="section-title">얼마나 많이 받을 수 있을까요?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-box">
+                    <div class="benefit-amount">500P</div>
+                    <div class="benefit-desc">하루 8,000보 달성 시</div>
+                </div>
+                <div class="benefit-box">
+                    <div class="benefit-amount">1,500P</div>
+                    <div class="benefit-desc">하루 10,000보 달성 시</div>
+                </div>
+                <div class="benefit-box">
+                    <div class="benefit-amount">45,000P</div>
+                    <div class="benefit-desc">매월 최대 적립 가능</div>
+                </div>
+                <div class="benefit-box">
+                    <div class="benefit-amount">무제한</div>
+                    <div class="benefit-desc">포인트 적립 기한 없음</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="how-it-works-container">
+            <h2 class="section-title">이용 방법</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>앱 다운로드</h4>
+                    <p>App Store 또는 Google Play에서 교원더오름 앱을 다운로드합니다.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>회원가입</h4>
+                    <p>간단한 정보 입력으로 빠르게 회원가입을 완료합니다.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>헬시클로버 시작</h4>
+                    <p>헬시클로버 기능을 활성화하고 걷기를 시작합니다.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>포인트 적립</h4>
+                    <p>매일 걷기만 해도 자동으로 포인트가 적립됩니다.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h4>혜택 받기</h4>
+                    <p>포인트로 전용몰에서 건강식품과 다양한 제품을 구매합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <h2 class="section-title">헬시클로버의 성장</h2>
+            <div class="stats-grid">
+                <div>
+                    <div class="stat">10만+</div>
+                    <div class="stat-label">활성 사용자</div>
+                </div>
+                <div>
+                    <div class="stat">10억+</div>
+                    <div class="stat-label">누적 포인트 적립</div>
+                </div>
+                <div>
+                    <div class="stat">4.5점</div>
+                    <div class="stat-label">앱스토어 평점</div>
+                </div>
+                <div>
+                    <div class="stat">45,000P</div>
+                    <div class="stat-label">월 최대 혜택</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download" id="download">
+        <div class="download-container">
+            <h2>지금 바로 시작하세요!</h2>
+            <p>건강한 습관을 만들고 동시에 혜택까지 받으세요</p>
+            <div class="app-store-buttons">
+                <a href="https://apps.apple.com/kr/app/%EA%B5%90%EC%9B%90%EB%8D%94%EC%98%A4%EB%A6%84/id1466176058" class="app-button">
+                    App Store에서 다운로드
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.kyowon.theorm.mobile.android&hl=ko" class="app-button">
+                    Google Play에서 다운로드
+                </a>
+            </div>
+            <p style="color: #999; font-size: 0.9rem;">데이터 수집 안 함 • iOS 13.0 이상 • Android 지원</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">개인정보처리방침</a>
+                <a href="#">이용약관</a>
+                <a href="#">고객지원</a>
+                <a href="#">회사소개</a>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2024 (주)교원헬스케어. All rights reserved.</p>
+                <p>교원더오름은 건강한 내일을 만드는데 함께합니다.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
