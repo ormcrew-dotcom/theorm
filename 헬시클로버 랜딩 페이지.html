@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>헬시클로버 - 걷기로 혜택받고 건강해지는 앱</title>
+    <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
     <style>
         * {
             margin: 0;
@@ -606,6 +607,27 @@
             opacity: 0.95;
         }
 
+        /* Counter Widget Section */
+        .counter-widget-section {
+            padding: 80px 2rem;
+            background: white;
+        }
+
+        .counter-widget-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .commonninja_component {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
         /* Download Section */
         .download {
             padding: 80px 2rem;
@@ -1122,7 +1144,6 @@
             </div>
         </div>
     </section>
-
     <!-- Download Section -->
     <section class="download" id="download">
         <div class="download-container">
@@ -1139,27 +1160,13 @@
             <p style="color: #999; font-size: 0.9rem;">데이터 수집 안 함 • iOS 13.0 이상 • Android 지원</p>
         </div>
     </section>
-
-    <!-- Visitor Counter Section -->
-    <section class="visitor-counter">
-        <div class="counter-container">
-            <div class="counter-box">
-                <div class="counter-label">📊 총 방문자 수</div>
-                <div class="counter-number" id="totalVisitors">0</div>
-                <div class="counter-subtext">누적 방문자</div>
-            </div>
-            <div class="counter-box">
-                <div class="counter-label">👤 오늘 방문자 수</div>
-                <div class="counter-number" id="todayVisitors">0</div>
-                <div class="counter-subtext">일일 방문자</div>
-            </div>
-            <div class="counter-box">
-                <div class="counter-label">🌍 마지막 방문</div>
-                <div class="counter-number" id="lastVisitTime" style="font-size: 1.2rem;">-</div>
-                <div class="counter-subtext">마지막 방문 시간</div>
-            </div>
+    <!-- Counter Widget Section -->
+    <section class="counter-widget-section">
+        <div class="counter-widget-container">
+            <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+            <div class="commonninja_component pid-da1de5c1-59bb-4c7d-8672-c96704ada952"></div>
         </div>
-    </section>
+    </section>    
 
     <!-- Footer -->
     <footer>
@@ -1175,62 +1182,6 @@
                 <p>교원더오름은 건강한 내일을 만드는데 함께합니다.</p>
             </div>
         </div>
-    </footer>
-
-    <script>
-        // 방문자 카운터 로직
-        function initializeVisitorCounter() {
-            // 현재 날짜 가져오기
-            const today = new Date().toISOString().split('T')[0];
-            
-            // 로컬 스토리지에서 데이터 가져오기
-            let counterData = JSON.parse(localStorage.getItem('visitorCounter')) || {
-                total: 0,
-                todayDate: today,
-                todayCount: 0,
-                lastVisitTime: new Date()
-            };
-            
-            // 날짜가 변경되었는지 확인
-            if (counterData.todayDate !== today) {
-                // 새로운 날짜이면 일일 카운트 초기화
-                counterData.todayDate = today;
-                counterData.todayCount = 0;
-            }
-            
-            // 카운트 증가
-            counterData.total += 1;
-            counterData.todayCount += 1;
-            counterData.lastVisitTime = new Date();
-            
-            // 로컬 스토리지에 저장
-            localStorage.setItem('visitorCounter', JSON.stringify(counterData));
-            
-            // UI 업데이트
-            updateCounterDisplay(counterData);
-        }
-        
-        function updateCounterDisplay(data) {
-            // 총 방문자 수
-            document.getElementById('totalVisitors').textContent = 
-                data.total.toLocaleString();
-            
-            // 오늘 방문자 수
-            document.getElementById('todayVisitors').textContent = 
-                data.todayCount.toLocaleString();
-            
-            // 마지막 방문 시간
-            const lastVisit = new Date(data.lastVisitTime);
-            const hours = String(lastVisit.getHours()).padStart(2, '0');
-            const minutes = String(lastVisit.getMinutes()).padStart(2, '0');
-            const timeString = `${hours}:${minutes}`;
-            document.getElementById('lastVisitTime').textContent = timeString;
-        }
-        
-        // 페이지 로드 시 실행
-        window.addEventListener('load', function() {
-            initializeVisitorCounter();
-        });
-    </script>
+    </footer> 
 </body>
 </html>
