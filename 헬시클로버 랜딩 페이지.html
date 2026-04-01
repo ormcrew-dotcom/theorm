@@ -400,6 +400,134 @@
             font-size: 0.95rem;
         }
 
+        /* Team Challenge Section */
+        .team-challenge {
+            padding: 80px 2rem;
+            background: linear-gradient(135deg, #e8f8f5 0%, #d0f0eb 100%);
+        }
+
+        .team-challenge-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .challenge-intro {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 184, 148, 0.15);
+            border-left: 6px solid #00b894;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .challenge-intro p {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-highlight {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #00b894;
+            background: #f0fdf4;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 2px solid #00b894;
+            margin: 1rem 0;
+        }
+
+        .team-challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .challenge-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-top: 4px solid #00b894;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .challenge-card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .challenge-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #00b894;
+            font-weight: 700;
+        }
+
+        .challenge-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .team-requirements {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 184, 148, 0.15);
+            margin-top: 3rem;
+            border-left: 6px solid #ff6b00;
+        }
+
+        .requirements-title {
+            font-size: 1.5rem;
+            color: #ff6b00;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .requirements-list {
+            list-style: none;
+        }
+
+        .requirements-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .requirements-list li:last-child {
+            border-bottom: none;
+        }
+
+        .requirement-check {
+            color: #00b894;
+            font-weight: 700;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .requirement-text {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .requirement-highlight {
+            color: #ff6b00;
+            font-weight: 600;
+        }
+
         /* How it Works Section */
         .how-it-works {
             padding: 80px 2rem;
@@ -677,6 +805,14 @@
             .counter-label {
                 font-size: 0.9rem;
             }
+
+            .challenge-intro p {
+                font-size: 1rem;
+            }
+
+            .challenge-highlight {
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
@@ -692,6 +828,7 @@
                 <li><a href="#video">영상</a></li>
                 <li><a href="#features">기능</a></li>
                 <li><a href="#benefits">혜택</a></li>
+                <li><a href="#challenge">팀 챌린지</a></li>
                 <li><a href="#download">다운로드</a></li>
             </ul>
         </nav>
@@ -840,9 +977,9 @@
                     <p>주간, 월간 활동 데이터를 확인하고 진행 상황을 시각화합니다.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎁</div>
-                    <h3>다양한 혜택</h3>
-                    <p>정기적인 이벤트와 캠페인을 통해 추가 보상을 받을 수 있습니다.</p>
+                    <div class="feature-icon">👥</div>
+                    <h3>단체 챌린지</h3>
+                    <p>5명이 모여 함께 도전하면 추가 보상까지 받을 수 있는 팀 활동 기능입니다.</p>
                 </div>
             </div>
         </div>
@@ -869,6 +1006,61 @@
                     <div class="benefit-amount">무제한</div>
                     <div class="benefit-desc">ADS 구동시 포인트 적립 기한 없음</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Challenge Section -->
+    <section class="team-challenge" id="challenge">
+        <div class="team-challenge-container">
+            <h2 class="section-title">🎯 팀 챌린지로 더 큰 혜택 받기</h2>
+            
+            <div class="challenge-intro">
+                <p>혼자 걸어도 꽤 많은 포인트를 적립할 수 있지만,</p>
+                <div class="challenge-highlight">
+                    5명이 모여 단체 챌린지에 도전하면 추가로 10만 포인트를 더 받을 수 있습니다! 🎉
+                </div>
+                <p>친구들과 함께라면 더욱 재미있고 더욱 많은 혜택을 받을 수 있어요.</p>
+            </div>
+
+            <div class="team-challenge-grid">
+                <div class="challenge-card">
+                    <div class="challenge-card-icon">👥</div>
+                    <h4>팀 구성</h4>
+                    <p>5명 1팀 구성하여 함께 걷기 챌린지에 참여하세요.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-card-icon">📅</div>
+                    <h4>진행 기간</h4>
+                    <p>단체 챌린지는 4주간 진행되며 매달 초에 새로운 챌린지가 시작됩니다.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="challenge-card-icon">🏆</div>
+                    <h4>추가 보상</h4>
+                    <p>팀 목표를 달성하면 팀원 전원이 추가 10만 포인트 보상을 받습니다.</p>
+                </div>
+            </div>
+
+            <div class="team-requirements">
+                <h3 class="requirements-title">📋 단체 챌린지 참여 조건</h3>
+                <ul class="requirements-list">
+                    <li>
+                        <span class="requirement-check">✓</span>
+                        <span class="requirement-text"><span class="requirement-highlight">5인 1팀 구성</span> (직전 달 신규 회원 2인 이상 필수)</span>
+                    </li>
+                    <li>
+                        <span class="requirement-check">✓</span>
+                        <span class="requirement-text"><span class="requirement-highlight">참여자 전원 헬시클로버 마지막 주차</span> Active 유지 필수(10만원 상당 제품 구매 필요)</span>
+                    </li>
+                    <li>
+                        <span class="requirement-check">✓</span>
+                        <span class="requirement-text"><span class="requirement-highlight">웰시클로버 게시판 인증 월 1회 이상</span> (단체 팀원 얼굴이 모두 나온 인증샷. 편집 가능)</span>
+                    </li>
+                    <li>
+                        <span class="requirement-check">✓</span>
+                        <span class="requirement-text"><span class="requirement-highlight">팀 1인 4주 누적 걸음수 20만보 이상</span></span>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
