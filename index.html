@@ -835,6 +835,21 @@
             .challenge-highlight {
                 font-size: 1.1rem;
             }
+
+            .nav-cta {
+                background: #fff;
+                color: #00b894 !important;
+                padding: 8px 18px;
+                border-radius: 20px;
+                font-weight: 700;
+                transition: all 0.3s;
+            }
+
+            .nav-cta:hover {
+                background: #ffe812;
+                color: #222 !important;
+                transform: translateY(-2px);
+            }
         }
     </style>
 </head>
@@ -852,6 +867,7 @@
                 <li><a href="#benefits">혜택</a></li>
                 <li><a href="#challenge">단체 챌린지</a></li>
                 <li><a href="#download">다운로드</a></li>
+                <li><a href="#download" style="background:#fff; color:#00b894; padding:8px 16px; border-radius:20px;">가입하기</a></li> 
             </ul>
         </nav>
     </header>
@@ -868,6 +884,7 @@
                             <strong>헬시클로버 설치 및 무료 교원더오름 회원 가입</strong>
                             <p>추천인: <span style="font-weight: 600; color: #ff6b00;">1211635 (권기준)</span></p>
                             <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">앱을 다운로드하고 무료로 회원가입을 진행합니다. 추천인 코드를 입력하면 추가 혜택을 받을 수 있습니다.</p>
+                            <p><a href="https://www.theorm.kr/member/join/step01.do?sendNominId=1211635&sendName=%EA%B6%8C%EA%B8%B0%EC%A4%80" style="background:#fff; color:#00b894;">가입하기</a></p>
                         </div>
                     </li>
                     <li>
@@ -967,6 +984,18 @@
         </div>
     </section>
 
+    <!-- 신뢰도 섹션 -->
+    <section style="padding:60px 2rem; background:#fff;">
+        <div style="max-width:900px; margin:0 auto; text-align:center;">
+            <h2 style="font-size:2rem; margin-bottom:1rem;">안전하게 이용하세요</h2>
+            <p style="color:#666; line-height:1.8;">
+                헬시클로버는 걷기 활동을 기반으로 포인트를 지급하는 건강 관리 서비스입니다.<br>
+                개인의 노력에 따라 포인트 적립량은 달라질 수 있으며,<br>
+                과장된 수익을 보장하지 않습니다.
+            </p>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="features-container">
@@ -1005,6 +1034,17 @@
             </div>
         </div>
     </section>
+
+    <section style="padding:60px 2rem; background:#f0fdf4;">
+        <div style="max-width:1000px; margin:0 auto; text-align:center;">
+            <h2 style="font-size:2rem; margin-bottom:2rem;">한눈에 보는 수익 구조</h2>
+            <div style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap;">
+                <div>👣 걷기 → 포인트 적립</div>
+                <div>🎁 포인트 → 제품 구매</div>
+                <div>💰 챌린지 → 추가 혜택</div>
+            </div>
+        </div>
+    </section>    
 
     <!-- Benefits Section -->
     <section class="benefits" id="benefits">
@@ -1144,10 +1184,32 @@
             </div>
         </div>
     </section>
+
+    <section style="padding:80px 2rem; background:#fff;">
+        <div style="max-width:900px; margin:0 auto;">
+            <h2 style="text-align:center; font-size:2rem; margin-bottom:2rem;">실제 사용자 후기</h2>
+
+            <div style="background:#f8f9fa; padding:20px; border-radius:10px; margin-bottom:15px;">
+                ⭐⭐⭐⭐⭐  
+                "매일 걷기만 했는데 한 달에 5만원 이상 혜택 받았습니다!"
+            </div>
+
+            <div style="background:#f8f9fa; padding:20px; border-radius:10px;">
+                ⭐⭐⭐⭐⭐  
+                "건강도 좋아지고 제품도 무료로 받아서 너무 만족합니다."
+            </div>
+        </div>
+    </section>
+
+    <div style="background:#ff6b00; color:white; padding:15px; text-align:center; font-weight:600;">
+        ⚡ 지금 가입 시 추천인 혜택 적용 가능 (선착순 마감)
+    </div>
+
     <!-- Download Section -->
     <section class="download" id="download">
         <div class="download-container">
             <h2>지금 바로 시작하세요!</h2>
+            <h2><a href="https://www.theorm.kr/member/join/step01.do?sendNominId=1211635&sendName=%EA%B6%8C%EA%B8%B0%EC%A4%80" class="nav-cta">가입하기</a></h2>
             <p>건강한 습관을 만들고 동시에 혜택까지 받으세요</p>
             <div class="app-store-buttons">
                 <a href="https://apps.apple.com/kr/app/%EA%B5%90%EC%9B%90%EB%8D%94%EC%98%A4%EB%A6%84/id1466176058" class="app-button">
